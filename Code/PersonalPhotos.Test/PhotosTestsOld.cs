@@ -12,14 +12,15 @@ using Xunit;
 
 namespace PersonalPhotos.Test
 {
-    public class PhotosTests
+    public class PhotosTestsOld
     {
         [Fact]
-        public async Task Upload_GivenFileName_ReturnsDisplayAction()
+        public async Task Upload__GivenFileName_ReturnsDisplayAction()
         {
+            // Arrange
             var session = Mock.Of<ISession>();
             session.Set("User", Encoding.UTF8.GetBytes("a@b.com"));
-            var context = Mock.Of<HttpContext>(x => x.Session == session);
+            var context = Mock.Of<HttpContext>(x=> x.Session == session);
             var accessor = Mock.Of<IHttpContextAccessor>(x => x.HttpContext == context);
 
             var fileStorage = Mock.Of<IFileStorage>();
@@ -37,5 +38,6 @@ namespace PersonalPhotos.Test
             //Assert
             Assert.Equal("Display", result.ActionName, ignoreCase: true);
         }
+
     }
 }
